@@ -33,7 +33,7 @@ public class AccountCommandDispacher implements CommandDispatcher {
             throw  new RuntimeException("No se puede enviar un base command que tiene mas de un handlers ");
         }
 
-        handlers.get(0).handle(baseCommand);
+        handlers.getFirst().handle(baseCommand);
 
     }
 }

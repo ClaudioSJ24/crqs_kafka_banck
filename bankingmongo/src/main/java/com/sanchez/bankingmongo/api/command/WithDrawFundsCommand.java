@@ -7,23 +7,31 @@ public class WithDrawFundsCommand extends BaseCommand {
 
     private double amount;
 
-    public WithDrawFundsCommand(String id, double amount) {
-        super(id);
-        this.amount = amount;
+    private WithDrawFundsCommand() {
     }
 
-    public double getAmount() {
-        return amount;
+    public double getAmount() { return amount; }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public static class Builder extends BaseCommand.Builder<WithDrawFundsCommand, Builder> {
+
+        private Builder() {
+            super(new WithDrawFundsCommand());
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
+        public Builder amount(double amount) {
+            message.amount = amount;
+            return this;
+        }
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("amount", amount)
-                .toString();
-    }
+
 }

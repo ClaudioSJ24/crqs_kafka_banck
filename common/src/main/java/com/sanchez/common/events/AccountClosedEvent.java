@@ -1,11 +1,38 @@
 package com.sanchez.common.events;
 
 import com.sanchez.cqrs.core.events.BaseEvent;
+import lombok.experimental.SuperBuilder;
+
 
 public class AccountClosedEvent extends BaseEvent {
 
-    public AccountClosedEvent(int version) {
-        super(version);
+    private String id;
+
+    private AccountClosedEvent() {
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder extends BaseEvent.Builder<AccountClosedEvent, Builder> {
+
+        private Builder() {
+            super(new AccountClosedEvent());
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
+        // Mantiene sincronizados el id de Message y el id propio de esta clase
+        @Override
+        public Builder id(String id) {
+            super.id(id);
+            message.id = id;
+            return this;
+        }
     }
 
 }

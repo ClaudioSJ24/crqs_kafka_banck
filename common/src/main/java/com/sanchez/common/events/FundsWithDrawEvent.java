@@ -7,28 +7,31 @@ public class FundsWithDrawEvent extends BaseEvent {
 
     private double amount;
 
-    public FundsWithDrawEvent(int version) {
-        super(version);
+    private FundsWithDrawEvent() {
     }
 
-    public FundsWithDrawEvent(int version, double amount) {
-        super(version);
-        this.amount = amount;
+    public double getAmount() { return amount; }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public double getAmount() {
-        return amount;
+    public static class Builder extends BaseEvent.Builder<FundsWithDrawEvent, Builder> {
+
+        private Builder() {
+            super(new FundsWithDrawEvent());
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
+        public Builder amount(double amount) {
+            message.amount = amount;
+            return this;
+        }
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
 
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("amount", amount)
-                .toString();
-    }
 }
