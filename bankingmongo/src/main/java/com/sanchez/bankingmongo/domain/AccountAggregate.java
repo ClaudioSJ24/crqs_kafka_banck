@@ -16,6 +16,9 @@ public class AccountAggregate extends AggregateRoot {
     private Boolean active;
     private double balance;
 
+    public AccountAggregate() {
+    }
+
     public AccountAggregate(OpenAccountCommand openAccountCommand){
 
         raiseEvent(AccountOpenedEvent.builder()
@@ -85,8 +88,19 @@ public class AccountAggregate extends AggregateRoot {
         this.active = false;
     }
 
+    public double getBalance() {
+        return balance;
+    }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
+    public Boolean getActive() {
+        return active;
+    }
 
-
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }

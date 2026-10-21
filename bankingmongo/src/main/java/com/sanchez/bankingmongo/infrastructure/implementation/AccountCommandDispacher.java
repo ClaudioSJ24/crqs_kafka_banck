@@ -1,4 +1,4 @@
-package com.sanchez.bankingmongo.infrastructure;
+package com.sanchez.bankingmongo.infrastructure.implementation;
 
 import com.sanchez.cqrs.core.commands.BaseCommand;
 import com.sanchez.cqrs.core.commands.interfaces.CommandHandlerMethod;

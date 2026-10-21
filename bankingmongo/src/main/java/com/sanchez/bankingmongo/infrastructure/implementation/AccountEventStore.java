@@ -55,7 +55,7 @@ public class AccountEventStore implements EventStore {
     }
 
     @Override
-    public List<BaseEvent> getEvents(String aggregateId) {
+    public List<BaseEvent> getEvent(String aggregateId) {
 
         var eventStream = eventStoreRepository.findByAggregateIdentifier(aggregateId);
         if (eventStream == null || eventStream.isEmpty()) {
