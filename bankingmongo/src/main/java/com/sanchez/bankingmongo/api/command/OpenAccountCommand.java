@@ -9,21 +9,24 @@ public class OpenAccountCommand extends BaseCommand {
     private AccountType accountType;
     private double openingBalance;
 
-    private OpenAccountCommand() {
+    public OpenAccountCommand(String id) {
+        super(id);
     }
+
+
 
     public String getAccountHolder() { return accountHolder; }
     public AccountType getAccountType() { return accountType; }
     public double getOpeningBalance() { return openingBalance; }
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(String id) {
+        return new Builder(id);
     }
 
     public static class Builder extends BaseCommand.Builder<OpenAccountCommand, Builder> {
 
-        private Builder() {
-            super(new OpenAccountCommand());
+        private Builder(String id) {
+            super(new OpenAccountCommand(id));
         }
 
         @Override

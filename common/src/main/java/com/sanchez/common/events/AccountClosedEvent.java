@@ -1,15 +1,17 @@
 package com.sanchez.common.events;
 
 import com.sanchez.cqrs.core.events.BaseEvent;
-import lombok.experimental.SuperBuilder;
 
 
 public class AccountClosedEvent extends BaseEvent {
 
-    private String id;
+    private  String id;
 
-    private AccountClosedEvent() {
+    public AccountClosedEvent() {
+
     }
+
+
 
     public static Builder builder() {
         return new Builder();

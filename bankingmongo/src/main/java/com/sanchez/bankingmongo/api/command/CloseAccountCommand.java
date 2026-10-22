@@ -5,6 +5,7 @@ import com.sanchez.cqrs.core.commands.BaseCommand;
 public class CloseAccountCommand extends BaseCommand {
 
     private CloseAccountCommand() {
+        super();
     }
 
     public static Builder builder() {

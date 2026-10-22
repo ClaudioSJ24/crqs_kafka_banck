@@ -7,19 +7,20 @@ public class DeposiFundsCommand extends BaseCommand {
 
     private double amount;
 
-    private DeposiFundsCommand() {
+    public DeposiFundsCommand(String id) {
+        super(id);
     }
 
     public double getAmount() { return amount; }
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(String id) {
+        return new Builder(id);
     }
 
     public static class Builder extends BaseCommand.Builder<DeposiFundsCommand, Builder> {
 
-        private Builder() {
-            super(new DeposiFundsCommand());
+        private Builder(String id) {
+            super(new DeposiFundsCommand(id));
         }
 
         @Override

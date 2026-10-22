@@ -7,19 +7,20 @@ public class WithDrawFundsCommand extends BaseCommand {
 
     private double amount;
 
-    private WithDrawFundsCommand() {
+    private WithDrawFundsCommand(String id) {
+        super(id);
     }
 
     public double getAmount() { return amount; }
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(String id) {
+        return new Builder(id);
     }
 
     public static class Builder extends BaseCommand.Builder<WithDrawFundsCommand, Builder> {
 
-        private Builder() {
-            super(new WithDrawFundsCommand());
+        private Builder(String id) {
+            super(new WithDrawFundsCommand(id));
         }
 
         @Override
