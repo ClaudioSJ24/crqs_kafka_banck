@@ -23,6 +23,7 @@ public class AccountCommandDispacher implements CommandDispatcher {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void send(BaseCommand baseCommand) {
 
         var handlers = routes.get(baseCommand.getClass());
@@ -33,7 +34,7 @@ public class AccountCommandDispacher implements CommandDispatcher {
             throw  new RuntimeException("No se puede enviar un base command que tiene mas de un handlers ");
         }
 
-        handlers.getFirst().handle(baseCommand);
+        ((CommandHandlerMethod<BaseCommand>) handlers.getFirst()).handle(baseCommand);
 
     }
 }

@@ -7,6 +7,7 @@ import com.sanchez.cqrs.core.events.EventModel;
 import com.sanchez.cqrs.core.exceptions.AggregateNotFoundException;
 import com.sanchez.cqrs.core.exceptions.CurrencyException;
 import com.sanchez.cqrs.core.infrastructure.interfaces.EventStore;
+import com.sanchez.cqrs.core.producer.interfaces.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class AccountEventStore implements EventStore {
 
     @Autowired
     private EventStoreRepository eventStoreRepository;
+
+    @Autowired
+    private EventProducer eventProducer;
 
     @Override
     public void saveEvents(String aggregateId, Iterable<BaseEvent> baseEventIterable, int expectedVersion) {
@@ -48,7 +52,8 @@ public class AccountEventStore implements EventStore {
             var persistedEvent = eventStoreRepository.save(eventModel);
 
             //SE ENVIA EL EVENTO A KAFKA
-            if (persistedEvent != null) {
+            if (!persistedEvent.getId().isEmpty()) {
+                eventProducer.produce(event.getClass().getSimpleName(), event);
 
             }
         }
