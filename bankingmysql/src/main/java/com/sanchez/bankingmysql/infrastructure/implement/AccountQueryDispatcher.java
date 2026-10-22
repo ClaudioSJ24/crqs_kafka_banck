@@ -23,7 +23,7 @@ public class AccountQueryDispatcher implements QueryDispatcher {
     }
 
     @Override
-    public <U extends BaseQuery> List<U> send(BaseQuery baseQuery) {
+    public <U> List<U> send(BaseQuery baseQuery) {
 
         var handlers = routes.get(baseQuery.getClass());
 

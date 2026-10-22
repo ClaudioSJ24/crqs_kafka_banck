@@ -22,6 +22,10 @@ public class AccountLookupResponse extends BaseResponse {
         this.accounts = accounts;
     }
 
+    public AccountLookupResponse(String safeErrorMessage) {
+
+    }
+
     public List<BankAccount> getAccounts() {
         return accounts;
     }
